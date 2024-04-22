@@ -17,7 +17,7 @@ void shuffleColors(char arr[], int numColors) {
 void GameLEDs() {
 
   int numColors = 4;
-  char colors[4] = {'r','g','y','c'};
+  char colors[7] = {'r','g','y','c','n','n','n'};
 
   int rCount = 0;
   int gCount = 0;
@@ -34,27 +34,29 @@ void GameLEDs() {
   // shuffleColors(colors, numColors);
 
   for (int i = 0; i < numColors + 3; i++) {
+
+    Serial.println(colors[i]);
     
     // Conditionals for cycling LEDs downwards
-    if (colors[i] == 'r' || rStarted == true) {
+    if (colors[i % 4] == 'r' || rStarted == true) {
       digitalWrite(rLEDs[rCount], HIGH);
       digitalWrite(rLEDs[rCount-1], LOW);
       rCount++;
       rStarted = true;
     }
-    if (colors[i] == 'g' || gStarted == true) {
+    if (colors[i % 4] == 'g' || gStarted == true) {
       digitalWrite(gLEDs[gCount], HIGH);
       digitalWrite(gLEDs[gCount-1], LOW);
       gCount++;
       gStarted = true;
     }
-    if (colors[i] == 'y' || yStarted == true) {
+    if (colors[i % 4] == 'y' || yStarted == true) {
       digitalWrite(yLEDs[yCount], HIGH);
       digitalWrite(yLEDs[yCount-1], LOW);
       yCount++;
       yStarted = true;
     }
-    if (colors[i] == 'c' || cStarted == true) {
+    if (colors[i % 4] == 'c' || cStarted == true) {
       digitalWrite(cLEDs[cCount], HIGH);
       digitalWrite(cLEDs[cCount-1], LOW);
       cCount++;

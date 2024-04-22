@@ -8,7 +8,7 @@
 void setup() {
 
 
-  // Serial.begin(9600); // Prepare to SEND the current color
+  Serial.begin(9600); // Prepare to SEND the current color
 
   LEDSetup(); // Set up LED Definitions
 }
@@ -16,7 +16,7 @@ void setup() {
 void loop() {
 
   // digitalWrite(rLEDs[0], HIGH);
-  
+
   GameLEDs();
   // rainTestLoop();
   // turnAllOn();
