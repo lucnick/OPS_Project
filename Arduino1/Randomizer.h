@@ -1,18 +1,25 @@
 #pragma once
 
-constexpr unsigned int a = 1664525;
-constexpr unsigned int c = 1013904223;
-constexpr unsigned int m = 4294967296; // 2^32
 
+unsigned int getRandomSeed() {
+    unsigned int seed;
+    // Use the memory address of a local variable
+    unsigned int local_variable_address = (unsigned int)&seed;
+    // Use a pointer to a local variable to get the stack pointer
+    void *stack_pointer;
+    // Assign the address of a local variable to the pointer to capture the stack position
+    stack_pointer = &seed;
 
-unsigned int customRand(unsigned int& seed) {
-    seed = (a * seed + c) % m;
+    // Cast the pointer to an unsigned integer
+    unsigned int stack_pointer_address = (unsigned int)stack_pointer;
+    
+    // Combine both values to create a seed
+    seed = local_variable_address ^ stack_pointer_address;
     return seed;
 }
 
-int getRandomIndex(int max) {
-
-  unsigned int seed = 42;
-  int randomValue = customRand(seed) % max; // Use % 5 for random value [0, 4] (inclusive)
-  return randomValue;
+unsigned int getRandom(unsigned int n, unsigned int *seed) {
+    // Implementation of a pseudo-random number generator
+    *seed = (*seed * 1103515245 + 12345) & 0x7fffffff;
+    return (*seed) % n;
 }

@@ -15,12 +15,9 @@ void setup() {
 
 void loop() {
 
-  // digitalWrite(rLEDs[0], HIGH);
-
+  
   GameLEDs();
-  // rainTestLoop();
-  // turnAllOn();
-  // allFlashTest();
+
 }
 
 

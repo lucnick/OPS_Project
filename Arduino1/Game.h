@@ -1,23 +1,26 @@
 #pragma once
 
-void shuffleColors(char arr[], int numColors) {
-    for (int i = numColors - 1; i > 0; i--) {
-      int j = getRandomIndex(i + 1);
-      char temp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = temp;
-  }
+
+void customSwap(char *a, char *b) {
+    char temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
-
-
-
+void shuffleColors(char arr[], unsigned int seed) {
+    for (int i = 0; i < 3; i++) {
+        int j = getRandom(4, &seed);
+        customSwap(&arr[i], &arr[j]);
+    }
+}
 
 
 void GameLEDs() {
 
   int numColors = 4;
   char colors[7] = {'r','g','y','c','n','n','n'};
+  
+  shuffleColors(colors, getRandomSeed());
 
   int rCount = 0;
   int gCount = 0;
@@ -31,36 +34,39 @@ void GameLEDs() {
   bool cStarted = false;
 
 
-  // shuffleColors(colors, numColors);
-
   for (int i = 0; i < numColors + 3; i++) {
-
-    Serial.println(colors[i]);
     
     // Conditionals for cycling LEDs downwards
-    if (colors[i % 4] == 'r' || rStarted == true) {
+    if (colors[i % 7] == 'r' || rStarted == true) {
       digitalWrite(rLEDs[rCount], HIGH);
       digitalWrite(rLEDs[rCount-1], LOW);
       rCount++;
       rStarted = true;
     }
-    if (colors[i % 4] == 'g' || gStarted == true) {
+    if (colors[i % 7] == 'g' || gStarted == true) {
       digitalWrite(gLEDs[gCount], HIGH);
       digitalWrite(gLEDs[gCount-1], LOW);
       gCount++;
       gStarted = true;
     }
-    if (colors[i % 4] == 'y' || yStarted == true) {
+    if (colors[i % 7] == 'y' || yStarted == true) {
       digitalWrite(yLEDs[yCount], HIGH);
       digitalWrite(yLEDs[yCount-1], LOW);
       yCount++;
       yStarted = true;
     }
-    if (colors[i % 4] == 'c' || cStarted == true) {
+    if (colors[i % 7] == 'c' || cStarted == true) {
       digitalWrite(cLEDs[cCount], HIGH);
       digitalWrite(cLEDs[cCount-1], LOW);
       cCount++;
       cStarted = true;
+    }
+
+    if (colors[i % 7] == 'n') {
+      digitalWrite(rLEDs[0], LOW);
+      digitalWrite(gLEDs[0], LOW);
+      digitalWrite(yLEDs[0], LOW);
+      digitalWrite(cLEDs[0], LOW);
     }
 
     if (rCount > 3)
