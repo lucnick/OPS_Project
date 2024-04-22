@@ -1,5 +1,6 @@
 #pragma once
 
+
 // File containing all pin definitions for Arduino #1
 // This is the arduino controlling the LEDs, implemented on the breadboard itself
 
@@ -25,5 +26,7 @@ int rLEDs[] = {R0, R1, R2};
 int gLEDs[] = {G0, G1, G2};
 int yLEDs[] = {Y0, Y1, Y2};
 int cLEDs[] = {C0, C1, C2};
+
+
 
 

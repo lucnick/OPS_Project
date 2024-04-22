@@ -1,6 +1,5 @@
 #pragma once
 
-
 // The respective setup() function for implementing all the LEDs
 void LEDSetup() {
   for (int i = 0; i < LEDsPerColumn; i++) {
@@ -17,6 +16,30 @@ void turnAllOff() {
     digitalWrite(rLEDs[i], LOW);
     digitalWrite(gLEDs[i], LOW);
     digitalWrite(yLEDs[i], LOW);
+    digitalWrite(cLEDs[i], LOW);
+  }
+}
+
+void rOff() {
+  for (int i = 0; i < LEDsPerColumn; i++) {
+    digitalWrite(rLEDs[i], LOW);
+  }
+}
+
+void gOff() {
+  for (int i = 0; i < LEDsPerColumn; i++) {
+    digitalWrite(gLEDs[i], LOW);
+  }
+}
+
+void yOff() {
+  for (int i = 0; i < LEDsPerColumn; i++) {
+    digitalWrite(yLEDs[i], LOW);
+  }
+}
+
+void cOff() {
+  for (int i = 0; i < LEDsPerColumn; i++) {
     digitalWrite(cLEDs[i], LOW);
   }
 }
