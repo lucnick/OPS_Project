@@ -18,8 +18,10 @@ unsigned int getRandomSeed() {
     return seed;
 }
 
-unsigned int getRandom(unsigned int n, unsigned int *seed) {
+unsigned int getRandom(unsigned int n, unsigned int seed) {
     // Implementation of a pseudo-random number generator
-    *seed = (*seed * 1103515245 + 12345) & 0x7fffffff;
-    return (*seed) % n;
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    return (seed) % n;
 }
+
+unsigned int seed = getRandomSeed();

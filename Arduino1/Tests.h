@@ -11,47 +11,85 @@ void LEDSetup() {
 }
 
 
-void turnAllOff() {
-  for (int i = 0; i < LEDsPerColumn; i++) {
-    digitalWrite(rLEDs[i], LOW);
-    digitalWrite(gLEDs[i], LOW);
-    digitalWrite(yLEDs[i], LOW);
-    digitalWrite(cLEDs[i], LOW);
-  }
-}
 
+// ALL ON AND OFF FUNCTIONS:
 void rOff() {
   for (int i = 0; i < LEDsPerColumn; i++) {
     digitalWrite(rLEDs[i], LOW);
   }
 }
-
 void gOff() {
   for (int i = 0; i < LEDsPerColumn; i++) {
     digitalWrite(gLEDs[i], LOW);
   }
 }
-
 void yOff() {
   for (int i = 0; i < LEDsPerColumn; i++) {
     digitalWrite(yLEDs[i], LOW);
   }
 }
-
 void cOff() {
   for (int i = 0; i < LEDsPerColumn; i++) {
     digitalWrite(cLEDs[i], LOW);
   }
 }
-
-void turnAllOn() {
+void rOn() {
   for (int i = 0; i < LEDsPerColumn; i++) {
     digitalWrite(rLEDs[i], HIGH);
+  }
+}
+void gOn() {
+  for (int i = 0; i < LEDsPerColumn; i++) {
     digitalWrite(gLEDs[i], HIGH);
+  }
+}
+void yOn() {
+  for (int i = 0; i < LEDsPerColumn; i++) {
     digitalWrite(yLEDs[i], HIGH);
+  }
+}
+void cOn() {
+  for (int i = 0; i < LEDsPerColumn; i++) {
     digitalWrite(cLEDs[i], HIGH);
   }
 }
+
+// Turns off all LEDs
+void turnAllOff() {
+  rOff();
+  gOff();
+  yOff();
+  cOff();
+}
+
+// Turns on all LEDs
+void turnAllOn() {
+  rOn();
+  gOn();
+  yOn();
+  cOn();
+}
+
+
+void cycleAcross(int totalTime) {
+
+  int delayTime = totalTime / 5;
+  rOn();
+  delay(delayTime);
+  rOff();
+  gOn();
+  delay(delayTime);
+  gOff();
+  yOn();
+  delay(delayTime);
+  yOff();
+  cOn();
+  delay(delayTime);
+  cOff();
+  delay(delayTime);
+}
+
+
 
 void rainTestLoop() {
   int i = LEDsPerColumn;
@@ -73,9 +111,24 @@ void rainTestLoop() {
 
 
 // All LEDs flash simultaneously on and off
-void allFlashTest() {
+void allFlashTest(int delayTime) {
   turnAllOn();
-  delay(1000);
+  delay(delayTime);
   turnAllOff();
-  delay(1000);
+  delay(delayTime);
 }
+
+
+// Total 3000 ms
+void StartupLEDs() {
+
+  cycleAcross(2000);  // 2000 ms
+  turnAllOff();
+  allFlashTest(200);  // 400 ms
+  turnAllOff();
+  allFlashTest(200);  // 400 ms
+  turnAllOff();
+  delay(600);         // 600 ms         
+}
+
+
