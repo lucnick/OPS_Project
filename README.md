@@ -6,7 +6,7 @@ Collaborators: Nicholas Lucindo, Landon Amaba, Carter Amaba.
 
 ## Arduino Structure
 
-Arduino 1 controls the LEDs, randomization sequences, and 2 digital output pins to communicate signals to Arduino 2.
+Arduino 1 controls the LEDs, randomization sequences, and digital output pins to communicate signals to Arduino 2.
 
 Arduino 2 controls the LCD screen displaying scores, button logic, the timer, and game-end logic.
 
